@@ -1,0 +1,14 @@
+<index: element="d-selectize" arrays="option/options group/optgroups">
+    <select as="elem" id="{{@id}}" class="{{@class}}" required="{{@required}}" disabled="{{@disabled}}"></select>
+
+
+<field: element="d-field-selectize" attributes="label" arrays="option/options">
+    <d-field required="{{required}}" extend>
+        <d-selectize class="form-control"
+                     id="{{id}}"
+                     value="{{value}}"
+                     optgroups="{{optgroups}}"
+                     options="{{options}}"
+                     config="{{config}}"></d-selectize>
+        {{@content}}
+    </d-field>
