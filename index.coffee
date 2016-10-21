@@ -89,4 +89,14 @@ module.exports = class
                 @selectize.removeOption option[config.valueField or 'value']
 
         @on 'destroy', ->
-            @selectize.destroy()
+            eventNS = @selectize.eventNS
+
+            @selectize.trigger 'destroy'
+            @selectize.off()
+            @selectize.$input.removeData 'selectize'
+
+            $(window).off eventNS
+            $(document).off eventNS
+            $(document.body).off eventNS
+
+            delete @selectize.$input[0].selectize
