@@ -22,7 +22,6 @@ module.exports = class
         options = config.buildOptions options
         $(@elem).selectize _.defaults {}, config,
             items: null
-            plugins: ['restore_on_backspace', 'remove_button']
             optgroups: @getAttribute 'optgroups'
             options: options
             onChange: (value) =>
