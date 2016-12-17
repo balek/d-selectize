@@ -67,7 +67,7 @@ module.exports = class
 
         @model.on 'change', 'options', (options = []) =>
             # Можно использовать этот обработчик для всех событий ('all'), но тогда значение в поле будет исчезать и снова появляться
-            @savedValue ||= @model.get 'value'
+            @savedValue ||= @model.get('value') ? ''
             options = config.buildOptions options
 
             @selectize.clear true
@@ -75,9 +75,8 @@ module.exports = class
             for option in options
                 @selectize.addOption option
 
-            if @savedValue
-                @selectize.setValue @savedValue
-                @selectize.updateOriginalInput()
+            @selectize.setValue @savedValue
+            @selectize.updateOriginalInput()
 
         @model.on 'insert', 'options', (position, options) =>
             options = config.buildOptions options
