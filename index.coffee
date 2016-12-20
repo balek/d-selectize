@@ -67,7 +67,9 @@ module.exports = class
 
         @model.on 'change', 'options', (options = []) =>
             # Можно использовать этот обработчик для всех событий ('all'), но тогда значение в поле будет исчезать и снова появляться
-            @savedValue ||= @model.get('value') ? ''
+            @savedValue ||= @model.get('value')
+            if @selectize.settings.mode == 'single'
+                @savedValue ?= ''
             options = config.buildOptions options
 
             @selectize.clear true
