@@ -65,8 +65,12 @@ module.exports = class
         
 
 
-        @model.on 'change', 'options', (options = []) =>
+        @model.on 'change', 'options', =>
             # Можно использовать этот обработчик для всех событий ('all'), но тогда значение в поле будет исчезать и снова появляться
+
+            # Это обработчик вызывается, когда значение для options задано функцией и d-field-selectize создаётся
+            # динамически внутри блока if или each.
+            options = @getAttribute('options') or []
             @savedValue ||= @model.get('value')
             if @selectize.settings.mode == 'single'
                 @savedValue ?= ''
